@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 /*
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -24,6 +22,8 @@ Input:
     target = 6
 Output: {0,1}
 */
+
+#include <stdio.h>
 
 int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
     int *result = malloc(2 * sizeof(int));
