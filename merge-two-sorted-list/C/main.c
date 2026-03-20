@@ -30,19 +30,29 @@ struct ListNode {
 };
 
 struct ListNode *mergeTwoLists(struct ListNode *list1, struct ListNode *list2) {
-    struct ListNode *listResult = NULL;
+    struct ListNode *node = malloc(sizeof(struct ListNode)),
+        *currentNode;
 
-    while(list1 != NULL || list2 != NULL) {
-        if(list1->val < list2->val) {
-            listResult = list1;
-            listResult = listResult->next;
-            if(list1->next != NULL) list1 = list1->next;
+    node->next = NULL;
+    currentNode = node;
+    
+    while (list1 != NULL && list2 != NULL) {
+        if (list1->val < list2->val) {
+            currentNode->next = list1;
+            list1 = list1->next;
         } else {
-            listResult = list2;
-            listResult = listResult->next;
-            if(list2->next != NULL) list2 = list2->next;
+            currentNode->next = list2;
+            list2 = list2->next;
         }
+
+        currentNode = currentNode->next;
     }
 
-    return listResult;
+    if (list1 != NULL) {
+        currentNode->next = list1;
+    } else if (list2 != NULL) {
+        currentNode->next = list2;
+    }
+
+    return node->next;
 }
