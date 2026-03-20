@@ -24,14 +24,14 @@ Input:
 Output: [0,1]
 */
 
-#include <stdio.h>
+#include <vector>
+using namespace std;
 
-int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
-    *returnSize = 2;
-    int *result = malloc(*returnSize * sizeof(int));
+vector<int> twoSum(vector<int> &nums, int target) {
+    vector<int> result(2);
 
-    for(int i = 0; i < numsSize - 1; i++) {
-        for(int j = i + 1; j < numsSize; j++) {
+    for(int i = 0; i < nums.size() - 1; i++) {
+        for(int j = i + 1; j < nums.size(); j++) {
             if(nums[i] + nums[j] == target) {
                 result[0] = i;
                 result[1] = j;
