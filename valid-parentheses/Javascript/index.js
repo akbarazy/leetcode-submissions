@@ -26,32 +26,26 @@ Input: s = "([)]"
 Output: false
 */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
+var isValid = function(s) {
+    let stack = [];
 
-bool isValid(char *s) {
-    int index = 0, length = strlen(s);
-    char openBracket, closeBracket[length + 1];
-
-    while(*s) {
-        if(*s == '(' || *s == '[' || *s == '{') {
-            closeBracket[index++] = *s;
+    for(let c of s) {
+        if(c === '(' || c === '[' || c === '{') {
+            stack.push(c);
         } else {
-            if(index < 1) return false;
+            if(stack.length < 1) return false;
 
-            openBracket = closeBracket[--index];
+            let openBracket = stack.pop();
 
             if(
-                (openBracket == '(' && *s != ')') ||
-                (openBracket == '[' && *s != ']') ||
-                (openBracket == '{' && *s != '}')
+                (openBracket === '(' && c !== ')') ||
+                (openBracket === '[' && c !== ']') ||
+                (openBracket === '{' && c !== '}')
             ) {
                 return false;
             }
         }
-        s++;
     }
 
-    return index == 0;
+    return stack.length === 0;
 }

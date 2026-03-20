@@ -26,31 +26,33 @@ Input: s = "([)]"
 Output: false
 */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
+#include <iostream>
+#include <string>
+using namespace std;
 
-bool isValid(char *s) {
-    int index = 0, length = strlen(s);
-    char openBracket, closeBracket[length + 1];
+bool isValid(string s) {
+    int index = 0;
+    int length = s.length();
+    char openBracket;
+    char closeBracket[length + 1];
 
-    while(*s) {
-        if(*s == '(' || *s == '[' || *s == '{') {
-            closeBracket[index++] = *s;
-        } else {
+    for(char c : s) {
+        if(c == '(' || c == '[' || c == '{') {
+            closeBracket[index++] = c;
+        } 
+        else {
             if(index < 1) return false;
 
             openBracket = closeBracket[--index];
 
             if(
-                (openBracket == '(' && *s != ')') ||
-                (openBracket == '[' && *s != ']') ||
-                (openBracket == '{' && *s != '}')
+                (openBracket == '(' && c != ')') ||
+                (openBracket == '[' && c != ']') ||
+                (openBracket == '{' && c != '}')
             ) {
                 return false;
             }
         }
-        s++;
     }
 
     return index == 0;
