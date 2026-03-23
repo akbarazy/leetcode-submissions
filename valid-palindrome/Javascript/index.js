@@ -43,7 +43,7 @@ var isPalindrome = function(s) {
     index = length - 1;
 
     for(let i = 0; i < Math.floor(length / 2); i++) {
-        if (str[i] !== str[index - i]) return false;
+        if(str[i] !== str[index - i]) return false;
     }
 
     return true;
