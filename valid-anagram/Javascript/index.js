@@ -27,7 +27,7 @@ var isAnagram = function(s, t) {
     if(s.length !== t.length) return false;
 
     for(let j = 0; j < 26; j++) {
-        if (count[0][j] !== count[1][j]) return false;
+        if(count[0][j] !== count[1][j]) return false;
     }
 
     return true;
