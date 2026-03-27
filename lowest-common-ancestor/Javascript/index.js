@@ -29,6 +29,13 @@ Input:
 Output: 2
 */
 
+class TreeNode {
+    constructor(val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+
 var lowestCommonAncestor = function(root, p, q) {
     if(root === null || root === p || root === q) return root;
 

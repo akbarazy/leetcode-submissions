@@ -22,6 +22,13 @@ Input:
 Output: [0]
 */
 
+class TreeNode {
+    constructor(val, next) {
+        this.val = (val === undefined ? 0 : val)
+        this.next = (next === undefined ? null : next)
+    }
+}
+
 var mergeTwoLists = function(list1, list2) {
     let node = new ListNode(0);
     let currentNode = node;
