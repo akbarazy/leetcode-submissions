@@ -70,8 +70,8 @@ void myQueuePush(MyQueue *q, int x) {
 }
 
 int myQueuePop(MyQueue *q) {
-    if (myStackEmpty(&q->outStack)) {
-        while (!myStackEmpty(&q->inStack)) {
+    if(myStackEmpty(&q->outStack)) {
+        while(!myStackEmpty(&q->inStack)) {
             myStackPush(&q->outStack, myStackPop(&q->inStack));
         }
     }
@@ -79,8 +79,8 @@ int myQueuePop(MyQueue *q) {
 }
 
 int myQueuePeek(MyQueue *q) {
-    if (myStackEmpty(&q->outStack)) {
-        while (!myStackEmpty(&q->inStack)) {
+    if(myStackEmpty(&q->outStack)) {
+        while(!myStackEmpty(&q->inStack)) {
             myStackPush(&q->outStack, myStackPop(&q->inStack));
         }
     }

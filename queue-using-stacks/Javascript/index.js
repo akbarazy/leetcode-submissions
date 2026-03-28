@@ -36,8 +36,8 @@ class MyQueue {
 };
 
 MyQueue.prototype.move = function() {
-    if (this.outStack.length === 0) {
-        while (this.inStack.length > 0) {
+    if(this.outStack.length === 0) {
+        while(this.inStack.length > 0) {
             this.outStack.push(this.inStack.pop());
         }
     }
