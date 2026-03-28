@@ -22,7 +22,7 @@ class TreeNode {
     }
 }
 
-function checkHeight(root) {
+var checkHeight = function(root) {
     if(root === null) return 0;
 
     let left = checkHeight(root.left);
