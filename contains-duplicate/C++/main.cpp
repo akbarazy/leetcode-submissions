@@ -23,7 +23,7 @@ Output: true
 #include <unordered_set>
 using namespace std;
 
-bool containsDuplicate(vector<int>& nums) {
+bool containsDuplicate(vector<int> &nums) {
     unordered_set<int> seen;
 
     for(int num : nums) {
