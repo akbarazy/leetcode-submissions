@@ -24,21 +24,73 @@ Input:
 Output: [0,1]
 */
 
-#include <stdio.h>
+#include <stdlib.h>
 
-int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
-    *returnSize = 2;
-    int *result = malloc(*returnSize * sizeof(int));
+#define TABLE_SIZE 10
 
-    for(int i = 0; i < numsSize - 1; i++) {
-        for(int j = i + 1; j < numsSize; j++) {
-            if(nums[i] + nums[j] == target) {
-                result[0] = i;
-                result[1] = j;
+struct Node {
+    int key;
+    int value;
+    struct Node* next;
+};
+
+struct HashMap {
+    struct Node* buckets[TABLE_SIZE];
+};
+
+int hashFunction(int key) {
+    int hash = key % TABLE_SIZE;
+    return hash < 0 ? hash + TABLE_SIZE : hash;
+}
+
+struct HashMap* createMap() {
+    struct HashMap* map = (struct HashMap*) malloc(sizeof(struct HashMap));
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        map->buckets[i] = NULL;
+    }
+    return map;
+}
+
+void insert(struct HashMap* map, int key, int value) {
+    unsigned int index = hashFunction(key);
+
+    struct Node* currentNode = map->buckets[index];
+    while (currentNode != NULL) {
+        if (currentNode->key == key) {
+            currentNode->value = value;
+            return;
+        }
+        currentNode = currentNode->next;
+    }
+    
+    struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+    newNode->key = key;
+    newNode->value = value;
+    newNode->next = map->buckets[index];
+    map->buckets[index] = newNode;
+}
+
+int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
+    struct HashMap* numberMap = createMap();
+    int* result = (int*) malloc(2 * sizeof(int));
+
+    for (int i = 0; i < numsSize; i++) {
+        int complement = target - nums[i];
+        
+        struct Node* currentNode = numberMap->buckets[hashFunction(complement)];
+        while (currentNode != NULL) {
+            if (currentNode->key == complement) {
+                result[0] = currentNode->value;
+                result[1] = i;
+
+                *returnSize = 2;
                 return result;
             }
+            currentNode = currentNode->next;
         }
+        insert(numberMap, nums[i], i);
     }
 
-    return result;
+    *returnSize = 0;
+    return NULL;
 }
