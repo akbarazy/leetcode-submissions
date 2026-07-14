@@ -89,6 +89,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
             }
             currentNode = currentNode->next;
         }
+        
         insert(numberIndex, currentNumber, i);
     }
 

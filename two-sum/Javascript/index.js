@@ -31,10 +31,11 @@ var twoSum = function(nums, target) {
         const currentNumber = nums[i];
         const complement = target - currentNumber;
 
-        if (numberIndex.has(complement))
+        if (numberIndex.has(complement)) {
             return [numberIndex.get(complement), i];
-        
-        numberIndex.set(currentNumber, i);
+        } else {
+            numberIndex.set(currentNumber, i);
+        }
     }
 
     return [];

@@ -39,9 +39,9 @@ vector<int> twoSum(vector<int>& nums, int target) {
         auto it = numberIndex.find(complement);
         if (it != numberIndex.end()) {
             return {it->second, i};
+        } else {
+            numberIndex[currentNumber] = i;
         }
-
-        numberIndex[currentNumber] = i;
     }
 
     return {};
