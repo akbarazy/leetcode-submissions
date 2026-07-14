@@ -71,13 +71,13 @@ void insert(struct HashMap* map, int key, int value) {
 }
 
 int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
-    struct HashMap* numberMap = createMap();
+    struct HashMap* numberIndex = createMap();
     int* result = (int*) malloc(2 * sizeof(int));
 
     for (int i = 0; i < numsSize; i++) {
         int complement = target - nums[i];
         
-        struct Node* currentNode = numberMap->buckets[hashFunction(complement)];
+        struct Node* currentNode = numberIndex->buckets[hashFunction(complement)];
         while (currentNode != NULL) {
             if (currentNode->key == complement) {
                 result[0] = currentNode->value;
@@ -88,7 +88,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
             }
             currentNode = currentNode->next;
         }
-        insert(numberMap, nums[i], i);
+        insert(numberIndex, nums[i], i);
     }
 
     *returnSize = 0;
