@@ -24,22 +24,24 @@ Input:
 Output: [0,1]
 */
 
-#include <iostream>
 #include <vector>
+#include <unordered_map>
+
 using namespace std;
 
-vector<int> twoSum(vector<int> &nums, int target) {
-    vector<int> result(2);
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int, int> numberIndex;
 
-    for(int i = 0; i < nums.size() - 1; i++) {
-        for(int j = i + 1; j < nums.size(); j++) {
-            if(nums[i] + nums[j] == target) {
-                result[0] = i;
-                result[1] = j;
-                return result;
-            }
+    for (int i = 0; i < nums.size(); i++) {
+        int complement = target - nums[i];
+
+        auto it = numberIndex.find(complement);
+        if (it != numberIndex.end()) {
+            return {it->second, i};
         }
+
+        numberIndex[nums[i]] = i;
     }
 
-    return result;
+    return {};
 }
