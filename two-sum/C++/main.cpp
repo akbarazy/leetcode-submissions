@@ -33,14 +33,15 @@ vector<int> twoSum(vector<int>& nums, int target) {
     unordered_map<int, int> numberIndex;
 
     for (int i = 0; i < nums.size(); i++) {
-        int complement = target - nums[i];
+        int currentNumber = nums[i];
+        int complement = target - currentNumber;
 
         auto it = numberIndex.find(complement);
         if (it != numberIndex.end()) {
             return {it->second, i};
         }
 
-        numberIndex[nums[i]] = i;
+        numberIndex[currentNumber] = i;
     }
 
     return {};

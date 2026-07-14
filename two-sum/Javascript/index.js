@@ -28,11 +28,14 @@ var twoSum = function(nums, target) {
     const numberIndex = new Map();
 
     for (let i = 0; i < nums.length; i++) {
-        const complement = target - nums[i];
+        const currentNumber = nums[i];
+        const complement = target - currentNumber;
 
         if (numberIndex.has(complement))
             return [numberIndex.get(complement), i];
         
-        numberIndex.set(nums[i], i);
+        numberIndex.set(currentNumber, i);
     }
+
+    return [];
 }

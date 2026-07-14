@@ -75,7 +75,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
     int* result = (int*) malloc(2 * sizeof(int));
 
     for (int i = 0; i < numsSize; i++) {
-        int complement = target - nums[i];
+        int currentNumber = nums[i];
+        int complement = target - currentNumber;
         
         struct Node* currentNode = numberIndex->buckets[hashFunction(complement)];
         while (currentNode != NULL) {
@@ -88,7 +89,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
             }
             currentNode = currentNode->next;
         }
-        insert(numberIndex, nums[i], i);
+        insert(numberIndex, currentNumber, i);
     }
 
     *returnSize = 0;
