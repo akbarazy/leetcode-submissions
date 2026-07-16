@@ -24,25 +24,22 @@ Input:
 Output: [0,1]
 */
 
-#include <vector>
-#include <unordered_map>
+import java.util.HashMap;
 
-using namespace std;
+public class Solution {
+    public static int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> numberIndex = new HashMap<>();
 
-vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int, int> numberIndex;
+        for (int i = 0; i < nums.length; i++) {
+            Integer complement = target - nums[i];
 
-    for (int i = 0; i < nums.size(); i++) {
-        int currentNumber = nums[i];
-        int complement = target - currentNumber;
-
-        auto it = numberIndex.find(complement);
-        if (it != numberIndex.end()) {
-            return {it->second, i};
-        } else {
-            numberIndex[currentNumber] = i;
+            if (numberIndex.containsKey(complement)) {
+               return new int[]{numberIndex.get(complement), i}; 
+            }
+            
+            numberIndex.put(nums[i], i);
         }
-    }
 
-    return {};
+        return new int[]{};
+    }
 }

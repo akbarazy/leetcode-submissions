@@ -1,3 +1,4 @@
+<?php
 /*
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -24,19 +25,21 @@ Input:
 Output: [0,1]
 */
 
-var twoSum = function(nums, target) {
-    const numberIndex = new Map();
+class Solution {
+    function twoSum($nums, $target) {
+        $numberIndex = [];
 
-    for (let i = 0; i < nums.length; i++) {
-        const currentNumber = nums[i];
-        const complement = target - currentNumber;
+        for ($i = 0; $i < count($nums); $i++) {
+            $complement = $target - $nums[$i];
 
-        if (numberIndex.has(complement)) {
-            return [numberIndex.get(complement), i];
-        } else {
-            numberIndex.set(currentNumber, i);
+            if (array_key_exists($complement, $numberIndex)) {
+                return [$numberIndex[$complement], $i];
+            }
+            
+            $numberIndex[$nums[$i]] = $i;
         }
-    }
 
-    return [];
+        return [];
+    }
 }
+?>
