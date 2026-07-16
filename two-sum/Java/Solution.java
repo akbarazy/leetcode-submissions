@@ -31,13 +31,14 @@ public class Solution {
         HashMap<Integer, Integer> numberIndex = new HashMap<>();
 
         for (int i = 0; i < nums.length; i++) {
-            Integer complement = target - nums[i];
+            int currentNumber = nums[i];
+            Integer complement = target - currentNumber;
 
             if (numberIndex.containsKey(complement)) {
                return new int[]{numberIndex.get(complement), i}; 
             }
             
-            numberIndex.put(nums[i], i);
+            numberIndex.put(currentNumber, i);
         }
 
         return new int[]{};

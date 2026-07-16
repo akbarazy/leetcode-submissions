@@ -30,13 +30,14 @@ class Solution {
         $numberIndex = [];
 
         for ($i = 0; $i < count($nums); $i++) {
-            $complement = $target - $nums[$i];
+            $currentNumber = $nums[$i];
+            $complement = $target - $currentNumber;
 
             if (array_key_exists($complement, $numberIndex)) {
                 return [$numberIndex[$complement], $i];
             }
             
-            $numberIndex[$nums[$i]] = $i;
+            $numberIndex[$currentNumber] = $i;
         }
 
         return [];

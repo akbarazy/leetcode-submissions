@@ -28,14 +28,15 @@ export function twoSum(nums: number[], target: number): number[] {
     const numberIndex = new Map<number, number>();
 
     for (let i = 0; i < nums.length; i++) {
-        const complement = target - nums[i];
+        const currentNumber = nums[i];
+        const complement = target - currentNumber;
         const index = numberIndex.get(complement);
 
         if (index !== undefined) {
             return [index, i];
         }
         
-        numberIndex.set(nums[i], i);
+        numberIndex.set(currentNumber, i);
     }
 
     return [];
