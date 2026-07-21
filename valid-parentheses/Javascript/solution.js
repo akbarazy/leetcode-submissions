@@ -26,18 +26,21 @@ Input: s = "([)]"
 Output: false
 */
 
-var isValid = function(s) {
-    let stack = [];
+export var isValid = function(s) {
+    const openBrackets = [];
 
-    for(let c of s) {
-        if(c === '(' || c === '[' || c === '{') {
-            stack.push(c);
+    for(const c of s) {
+        if (
+            c === '(' || 
+            c === '[' || 
+            c === '{'
+        ) {
+            openBrackets.push(c);
         } else {
-            if(stack.length < 1) return false;
+            if (!openBrackets.length) return false;
+            let openBracket = openBrackets.pop();
 
-            let openBracket = stack.pop();
-
-            if(
+            if (
                 (openBracket === '(' && c !== ')') ||
                 (openBracket === '[' && c !== ']') ||
                 (openBracket === '{' && c !== '}')
@@ -47,5 +50,5 @@ var isValid = function(s) {
         }
     }
 
-    return stack.length === 0;
+    return !openBrackets.length;
 }
