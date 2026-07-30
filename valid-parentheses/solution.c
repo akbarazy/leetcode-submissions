@@ -62,10 +62,10 @@ char pop(struct Node** top) {
     return data;
 }
 
-bool isValid(char *s) {
+bool isValid(char* s) {
     struct Node* openBrackets = NULL;
 
-    while(*s != '\0') {
+    while (*s != '\0') {
         if (
             *s == '(' ||
             *s == '[' ||

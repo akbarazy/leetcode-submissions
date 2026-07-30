@@ -26,7 +26,7 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 #include <string.h>
 #include <ctype.h>
 
-bool isPalindrome(char *s) {
+bool isPalindrome(char* s) {
     int left = 0, 
         right = strlen(s) - 1;
 

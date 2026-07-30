@@ -17,7 +17,7 @@ Explanation:
 In this case, no transactions are done and the max profit = 0.
 */
 
-int maxProfit(int *prices, int pricesSize) {
+int maxProfit(int* prices, int pricesSize) {
     int profit = 0, 
         minPrice = prices[0];
     
