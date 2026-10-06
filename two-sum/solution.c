@@ -38,7 +38,7 @@ struct HashMap {
     struct Node* buckets[TABLE_SIZE];
 };
 
-int hashFunction(int key) {
+int hash(int key) {
     int hash = key % TABLE_SIZE;
     return hash < 0 ? hash + TABLE_SIZE : hash;
 }
@@ -52,7 +52,7 @@ struct HashMap* createMap() {
 }
 
 void insert(struct HashMap* map, int key, int value) {
-    unsigned int index = hashFunction(key);
+    unsigned int index = hash(key);
 
     struct Node* currentNode = map->buckets[index];
     while (currentNode != NULL) {
@@ -71,7 +71,7 @@ void insert(struct HashMap* map, int key, int value) {
 }
 
 int find(struct HashMap* map, int key) {
-    struct Node* currentNode = map->buckets[hashFunction(key)];
+    struct Node* currentNode = map->buckets[hash(key)];
     
     while (currentNode != NULL) {
         if (currentNode->key == key) {
