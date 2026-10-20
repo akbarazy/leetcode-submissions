@@ -27,10 +27,6 @@ int* countBits(int n, int* returnSize) {
     int* result = (int*)malloc((*returnSize) * sizeof(int));
     if (result == NULL) return NULL;
     result[0] = 0;
-
-    for (size_t i = 2; i <= n; i++) {
-        result[i] = result[i >> 1] + (i & 1);
-    }
-    
+    for (size_t i = 1; i <= n; i++) result[i] = result[i >> 1] + (i & 1);
     return result;
 }
