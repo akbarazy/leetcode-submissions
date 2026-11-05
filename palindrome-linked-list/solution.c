@@ -13,37 +13,32 @@ Output: false
 #include <stdbool.h>
 #include <stdlib.h>
 
-struct ListNode* reverseList(struct ListNode* head) {
-    struct ListNode* prev = NULL;
-    struct ListNode* curr = head;
-    
-    while (curr != NULL) {
-        struct ListNode* next_node = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next_node;
-    }
-
-    return prev;
-}
-
 bool isPalindrome(struct ListNode* head) {
     if (head == NULL || head->next == NULL) return true;
     struct ListNode* slow = head;
     struct ListNode* fast = head;
 
-    while (fast->next != NULL && fast->next->next != NULL) {
+    while (fast != NULL) {
+        fast = fast->next;
         slow = slow->next;
-        fast = fast->next->next;
+        if (fast != NULL) fast = fast->next;
     }
 
-    struct ListNode* p1 = head;
-    struct ListNode* p2 = reverseList(slow->next);
+    struct ListNode* linkedList1 = head;
+    struct ListNode* linkedList2 = NULL;
+    struct ListNode* current = slow;
+    
+    while (current != NULL) {
+        struct ListNode* next = current->next;
+        current->next = linkedList2;
+        linkedList2 = current;
+        current = next;
+    }
 
-    while (p2 != NULL) {
-        if (p1->val != p2->val) return false;
-        p1 = p1->next;
-        p2 = p2->next;
+    while (linkedList2 != NULL) {
+        if (linkedList1->val != linkedList2->val) return false;
+        linkedList1 = linkedList1->next;
+        linkedList2 = linkedList2->next;
     }
 
     return true;
