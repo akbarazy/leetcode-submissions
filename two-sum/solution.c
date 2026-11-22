@@ -45,21 +45,24 @@ int hash(int key) {
 
 struct HashMap* createMap() {
     struct HashMap* map = (struct HashMap*) malloc(sizeof(struct HashMap));
+
     for (int i = 0; i < TABLE_SIZE; i++) {
         map->buckets[i] = NULL;
     }
+    
     return map;
 }
 
 void insert(struct HashMap* map, int key, int value) {
     unsigned int index = hash(key);
-
     struct Node* currentNode = map->buckets[index];
+
     while (currentNode != NULL) {
         if (currentNode->key == key) {
             currentNode->value = value;
             return;
         }
+
         currentNode = currentNode->next;
     }
     
@@ -77,6 +80,7 @@ int find(struct HashMap* map, int key) {
         if (currentNode->key == key) {
             return currentNode->value;
         }
+
         currentNode = currentNode->next;
     }
 
