@@ -25,27 +25,26 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 bool isPalindrome(char* s) {
-    int left = 0, 
-        right = strlen(s) - 1;
+    if (s == NULL || s[0] == '\0') {
+        return true;
+    }
 
+    int left = 0,
+        right = strlen(s) - 1;
+    
     while (left < right) {
-        while (
-            left < right && 
-            !isalnum((unsigned char)s[left])) {
+        while (left < right && !isalnum(s[left])) {
             left++;
         } 
         
-        while (
-            left < right && 
-            !isalnum((unsigned char)s[right])) {
+        while (left < right && !isalnum(s[right])) {
             right--;
         } 
         
-        if (
-            tolower((unsigned char)s[left]) != 
-            tolower((unsigned char)s[right])) {
+        if (tolower(s[left]) != tolower(s[right])) {
             return false;
         }
 
