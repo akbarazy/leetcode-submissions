@@ -34,58 +34,61 @@ struct Node {
     struct Node* next;
 };
 
-struct Node* createNode(char data) {
+void push(struct Node** peek, char value) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
-    if (!node) exit(1);
 
-    node->data = data;
-    node->next = NULL;
-    return node;
+    if (!node) {
+        return;
+    }
+
+    node->data = value;
+    node->next = *peek;
+    *peek = node;
 }
 
-bool isEmpty(struct Node* top) {
-    return top == NULL;
-}
+void pop(struct Node** peek) {
+    if (!*peek) {
+        return;
+    }
 
-void push(struct Node** top, char data) {
-    struct Node* node = createNode(data);
-    node->next = *top;
-    *top = node;
-}
-
-char pop(struct Node** top) {
-    struct Node* temp = *top;
-    char data = temp->data;
-
-    *top = (*top)->next;
+    struct Node* temp = *peek;
+    *peek = (*peek)->next;
     free(temp);
-    return data;
+}
+
+bool empty(struct Node* peek) {
+    return !peek;
 }
 
 bool isValid(char* s) {
-    struct Node* openBrackets = NULL;
+    struct Node* peek = NULL;
 
     while (*s != '\0') {
         if (
             *s == '(' ||
-            *s == '[' ||
-            *s == '{'
+            *s == '{' ||
+            *s == '['
         ) {
-            push(&openBrackets, *s);
+            push(&peek, *s);
         } else {
-            if (isEmpty(openBrackets)) return false;
-            char openBracket = pop(&openBrackets);
+            if (empty(peek)) {
+                return false;
+            }
+
+            char current = peek->data;
+            pop(&peek);
 
             if (
-                (*s == ')' && openBracket != '(') ||
-                (*s == ']' && openBracket != '[') ||
-                (*s == '}' && openBracket != '{')
+                (current == '(' && *s != ')') ||
+                (current == '{' && *s != '}') ||
+                (current == '[' && *s != ']')
             ) {
                 return false;
             }
         }
+
         s++;
     }
 
-    return isEmpty(openBrackets);
+    return empty(peek);
 }
