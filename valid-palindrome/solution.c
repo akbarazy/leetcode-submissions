@@ -32,8 +32,8 @@ bool isPalindrome(char* s) {
         return true;
     }
 
-    int left = 0,
-        right = strlen(s) - 1;
+    int left = 0;
+    int right = strlen(s) - 1;
     
     while (left < right) {
         while (left < right && !isalnum(s[left])) {

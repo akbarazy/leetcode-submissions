@@ -99,7 +99,6 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize) {
         if (index > -1) {
             result[0] = index;
             result[1] = i;
-
             *returnSize = 2;
             return result;
         }

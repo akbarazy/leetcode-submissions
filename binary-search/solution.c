@@ -20,12 +20,12 @@ Explanation:
 2 does not exist in nums so return -1.
 */
 
-int search(int *nums, int numsSize, int target) {
+int search(int* nums, int numsSize, int target) {
     int left = 0;
     int right = numsSize - 1;
-
+    
     while (left <= right) {
-        int mid = left + (right - left) / 2;
+        int mid = left + ((right - left) / 2);
 
         if (nums[mid] == target) {
             return mid;
