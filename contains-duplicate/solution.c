@@ -54,12 +54,7 @@ bool quickSort(int* nums, int left, int right) {
         }
 
         bool leftSubarray = quickSort(nums, left, pivot - 1);
-
-        if (leftSubarray) {
-            return true;
-        }
-
-        return quickSort(nums, pivot + 1, right);
+        return leftSubarray == true ? true : quickSort(nums, pivot + 1, right);
     }
 
     return false;

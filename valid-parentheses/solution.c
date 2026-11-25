@@ -37,7 +37,7 @@ struct Node {
 void push(struct Node** peek, char value) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
 
-    if (!node) {
+    if (node == NULL) {
         return;
     }
 
@@ -47,7 +47,7 @@ void push(struct Node** peek, char value) {
 }
 
 void pop(struct Node** peek) {
-    if (!*peek) {
+    if (*peek == NULL) {
         return;
     }
 
@@ -57,7 +57,7 @@ void pop(struct Node** peek) {
 }
 
 bool empty(struct Node* peek) {
-    return !peek;
+    return peek == NULL;
 }
 
 bool isValid(char* s) {

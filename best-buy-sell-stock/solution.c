@@ -18,16 +18,18 @@ In this case, no transactions are done and the max profit = 0.
 */
 
 int maxProfit(int* prices, int pricesSize) {
-    int profit = 0;
+    int maxProfit = 0;
     int minPrice = prices[0];
 
     for (int i = 1; i < pricesSize; i++) {
+        int currentProfit = prices[i] - minPrice;
+
         if (prices[i] < minPrice) {
             minPrice = prices[i];
-        } else if ((prices[i] - minPrice) > profit) {
-            profit = prices[i] - minPrice;
+        } else if (currentProfit > maxProfit) {
+            maxProfit = currentProfit;
         }
     }
 
-    return profit;
+    return maxProfit;
 }
