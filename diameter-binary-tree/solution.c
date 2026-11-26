@@ -21,15 +21,18 @@ struct TreeNode {
 };
 
 int max(int a, int b) {
-    return (a > b) ? a : b;
+    return a > b ? a : b;
 }
 
 int depth(struct TreeNode* root, int* diameter) {
-    if (root == NULL) return 0;
-    int leftDepth = depth(root->left, diameter);
-    int rightDepth = depth(root->right, diameter);
-    *diameter = max(*diameter, leftDepth + rightDepth);
-    return 1 + max(leftDepth, rightDepth);
+    if (root == NULL) {
+        return 0;
+    }
+
+    int left = depth(root->left, diameter);
+    int right = depth(root->right, diameter);
+    *diameter = max(*diameter, left + right);
+    return 1 + max(left, right);
 }
 
 int diameterOfBinaryTree(struct TreeNode* root) {
